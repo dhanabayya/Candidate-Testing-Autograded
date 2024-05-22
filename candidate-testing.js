@@ -43,7 +43,7 @@ function gradeQuiz(candidateAnswers) {
 
   for (let i = 0; i < candidateAnswers.length - 1; i++) {
     if (correctAnswers[i] === candidateAnswers[i]) {
-      console.log(`Hey ${candidateAnswers[i]} is rigth answer `);
+      console.log(`Hey ${candidateAnswers[i]} is right answer `);
     } else {
       console.log(`Hey ${candidateAnswers[i]} is wrong answer`);
     }
