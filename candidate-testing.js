@@ -29,29 +29,52 @@ function askForName() {
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
   //candidateAnswer=input.question(question);
-  for (let i = 0; i < questions.length; i++) {
+  for (let i = 0; i <= questions.length - 1; i++) {
     candidateAnswers[i] = input.question(questions[i]);
-    candidateAnswers.push(candidateAnswers[i]);
+    
   }
-
+  
 }
 
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
 
-
-  for (let i = 0; i < candidateAnswers.length - 1; i++) {
-    if (correctAnswers[i] === candidateAnswers[i]) {
-      console.log(`Hey ${candidateAnswers[i]} is right answer `);
+  let correctAnswersCount = 0;
+  for(let i = 0; i <= candidateAnswers.length - 1; i++) {
+    if(correctAnswers[i].toUpperCase() === candidateAnswers[i].toUpperCase()) {
+      console.log(`${i + 1}. ${questions[i]}`);
+      console.log(`Your answer: ${candidateAnswers[i]}`);
+      console.log(`Correct answer : ${correctAnswers[i]}` + "\n");
+      correctAnswersCount += 1;
     } else {
-      console.log(`Hey ${candidateAnswers[i]} is wrong answer`);
+      console.log(`${i + 1}. ${questions[i]}`);
+      console.log(`Hey ${candidateAnswers[i]} is wrong answer.`);
+      console.log(`Correct answer : ${correctAnswers[i]}` + "\n");
     }
   }
-
-
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
-
+  
+  let grade = correctAnswersCount / questions.length * 100;
+  //TODO 3.2 use this variable to calculate the candidates score.
+  if (grade == 0) {
+    console.log("Your Grade: 0% (0 of 5 responses correct)");
+    console.log(" Status: FAILED");
+  } else if (grade == 20) {
+    console.log("Your Grade: 20% (1 of 5 responses correct)");
+    console.log(" Status: FAILED");
+  } else if (grade == 40) {
+    console.log("Your Grade: 40% (2 of 5 responses correct)");
+    console.log(" Status: FAILED");
+  } else if (grade == 60) {
+    console.log("Your Grade: 60% (3 of 5 responses correct)");
+    console.log(" Status: FAILED");
+  } else if (grade == 80) {
+    console.log("Your Grade: 80% (4 of 5 responses correct)");
+    console.log(" Status: PASSED");
+  } else if (grade == 100) {
+    console.log("Your Grade: 100% (5 of 5 responses correct)");
+    console.log(" Status: PASSED");
+  }
   return grade;
 
 }
@@ -59,7 +82,7 @@ function gradeQuiz(candidateAnswers) {
 function runProgram() {
   askForName();
   // TODO 1.1c: Greet candidate using their name //
-  console.log("Hi " + candidateName + ", lets start the test : ")
+  console.log("Hi " + candidateName + ", lets start the test : ");
   askQuestion();
   gradeQuiz(this.candidateAnswers);
 }
